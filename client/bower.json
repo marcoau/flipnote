@@ -1,0 +1,25 @@
+{
+  "name": "flipnote",
+  "version": "0.0.0",
+  "authors": [
+    "Marco Au <marco.au.321@gmail.com>"
+  ],
+  "description": "flippable note-taking app",
+  "main": "index.html",
+  "keywords": [
+    "productivity"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0",
+    "socket.io": "~1.0.4"
+  }
+}

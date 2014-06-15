@@ -1,0 +1,21 @@
+{
+  "name": "flipnote",
+  "version": "0.0.0",
+  "description": "flippable note-taking app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "productivity"
+  ],
+  "author": "Marco Au",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.4.3",
+    "body-parser": "^1.3.1",
+    "static-favicon": "^2.0.0-alpha",
+    "mongoose": "^3.8.12",
+    "socket.io": "^1.0.4"
+  }
+}

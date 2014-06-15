@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flipnote</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h1>Flipnote</h1>
+  <h3>Simplicity = power.</h3>
+  <p>A simple app that improves your learning efficiency by 500%</p>
+  <input class='message'></input>
+  <button class='sendMessage'></button>
+
+  <!-- dependencies -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  
+  <script>
+    var socket = io();
+
+    console.log(socket);
+
+    socket.on('returnTest', function(data){
+      console.log(data);
+    });
+
+    $(document).ready(function(){
+      $('.sendMessage').on('click', function(){
+        var message = $('.message').val();
+        socket.emit('receiveTest', {message: message});
+      });
+    });
+
+  </script>
+
+</body>
+</html>
