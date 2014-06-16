@@ -28,22 +28,14 @@ app.use(function(req, res, next){
 //load static resources
 app.use(express.static(__dirname + '/client'));
 
+//DB routes
 app.get('/notes', db.getAllNotes);
+app.post('/notes/new_note', db.createNewNote);
+app.delete('/notes/id/:id', db.deleteNote);
 
 //load any static views if it is not a specific route
 app.get('/*', function(req, res){
   res.sendfile(path.resolve(__dirname + '/client/index.html'));
-});
-
-io.on('connection', function(socket){
-  // socket.on('receiveTest', function(data){
-  //   var message = data.message + data.message;
-  //   socket.emit('returnTest', {message: message});
-  // });
-  socket.on('changeFront', function(data){
-
-  });
-
 });
 
 //http instead of app due to Socket.IO

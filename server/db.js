@@ -19,10 +19,42 @@ var Note = mongoose.model('Note');
 
 
 exports.getAllNotes = function(req, res){
+  console.log('getAllNotes');
   Note.find({})
     .sort('-last_update')
     .exec(function(err, data){
       res.send(data);
+    });
+};
+
+exports.createNewNote = function(req, res){
+  console.log('createNewNote');
+  var newNote = new Note({
+    text_front: '',
+    text_back: '',
+    last_update: new Date()
+  });
+
+  newNote.save(function(err){
+    if(err){
+      console.error(err);
+    }else{
+      // send back latest collection of all notes
+      exports.getAllNotes(req, res);
+    }
+  });
+};
+
+exports.deleteNote = function(req, res){
+  var id = req.param('id');
+  Note.remove({_id: new ObjectId(id)},
+    function(err, data){
+      if(err){
+        console.error(err);
+      }else{
+        // send back latest collection of all notes
+        exports.getAllNotes(req ,res);
+      }
     });
 };
 

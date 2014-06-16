@@ -10,13 +10,16 @@ CSS template{
   [internal format]
 }
 */
+body, textarea, button{
+  font-family: 'Helvetica Neue', sans-serif;
+}
 
 .note{
   display: inline-block;
   position: relative;
 
-  width: 300px;
-  height: 150px;
+  width: 500px;
+  height: 250px;
   margin: 10px;
 
   border: 3px solid black;
@@ -33,7 +36,7 @@ CSS template{
   background-color: yellow;
 }
 
-.button-flip{
+.note-buttons{
   position: absolute;
   right: 0;
   top: 0;
