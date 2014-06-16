@@ -1,5 +1,3 @@
-// angular.module('app', [
-//   'ui-router'])
 angular.module('app', [
   'ui.router',
   'app.home'
@@ -19,4 +17,3 @@ angular.module('app', [
      $urlRouterProvider.otherwise('/');
      $locationProvider.html5Mode(true);
   }]);
-

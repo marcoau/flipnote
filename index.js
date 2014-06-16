@@ -12,7 +12,7 @@ var config = require('./server/config');
 
 //Socket.IO boilerplate
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = exports.io = require('socket.io')(http);
 
 //Mongoose - schemas are imported in db modules
 var mongoose = require('mongoose');
@@ -36,11 +36,15 @@ app.get('/*', function(req, res){
 });
 
 io.on('connection', function(socket){
-  socket.on('receiveTest', function(data){
-    var message = data.message + data.message;
-    socket.emit('returnTest', {message: message});
+  // socket.on('receiveTest', function(data){
+  //   var message = data.message + data.message;
+  //   socket.emit('returnTest', {message: message});
+  // });
+  socket.on('changeFront', function(data){
+
   });
-})
+
+});
 
 //http instead of app due to Socket.IO
 http.listen(3000);

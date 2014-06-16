@@ -27,20 +27,20 @@
   <script src="modules/app.js"></script>
   <script src="modules/home/home.js"></script>
   <script>
-    var socket = io();
+    // var socket = io();
 
-    console.log(socket);
+    // console.log(socket);
 
-    socket.on('returnTest', function(data){
-      console.log(data);
-    });
+    // socket.on('returnTest', function(data){
+    //   console.log(data);
+    // });
 
-    $(document).ready(function(){
-      $('.sendMessage').on('click', function(){
-        var message = $('.message').val();
-        socket.emit('receiveTest', {message: message});
-      });
-    });
+    // $(document).ready(function(){
+    //   $('.sendMessage').on('click', function(){
+    //     var message = $('.message').val();
+    //     socket.emit('receiveTest', {message: message});
+    //   });
+    // });
 
   </script>
 

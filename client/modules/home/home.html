@@ -1,9 +1,10 @@
 <h1>Home</h1>
-<button ng-click='test()'>Test</button>
+<button ng-click='test()'>New note</button>
 
 <div class='notes'>
   <div class='note' ng-repeat='note in notes'>
-    <textarea class='note-front' ng-model='note.text_front' ng-hide='note.flipped' ng-click='flip(note)'></textarea>
-    <textarea class='note-back' ng-model='note.text_back' ng-show='note.flipped' ng-click='flip(note)'></textarea>
+    <button class='button-flip' ng-click='flip(note)'>F</button>
+    <textarea class='note-front' ng-model='note.text_front' ng-hide='note.flipped' ng-change='changeFront(note)'></textarea>
+    <textarea class='note-back' ng-model='note.text_back' ng-show='note.flipped' ng-change='changeBack(note)'></textarea>
   </div>
 </div>
