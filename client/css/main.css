@@ -1,0 +1,18 @@
+.note{
+  width: 300px;
+  height: 150px;
+  
+  border: 3px solid black;
+}
+.note > textarea{
+  width: 98%;
+  height: 98%;
+  margin: auto;
+  
+  resize: none;
+  border: none;
+}
+.note-back{
+  background-color: yellow;
+}
+

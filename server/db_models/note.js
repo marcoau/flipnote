@@ -15,10 +15,13 @@ var note = new Note({
   last_update: new Date()
 });
 
-
 note.save(function(err){
   if(err){
     console.log('DB ERROR: ' + err);
   }
   console.log('note saved!');
 });
+
+// Note.find({}, function(err, data){
+//   console.log(data);
+// });

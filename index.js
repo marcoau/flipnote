@@ -1,3 +1,6 @@
+var path = require('path');
+
+//express middlewares
 var express = require('express');
 var favicon = require('static-favicon');
 var bodyParser = require('body-parser');
@@ -25,14 +28,11 @@ app.use(function(req, res, next){
 //load static resources
 app.use(express.static(__dirname + '/client'));
 
-app.get('/notes', function(req, res){
+app.get('/notes', db.getAllNotes);
 
-});
-
-app.get('/hello', function(req, res){
-  console.log('hello');
-  router.helloWorld();
-  res.redirect('/');
+//load any static views if it is not a specific route
+app.get('/*', function(req, res){
+  res.sendfile(path.resolve(__dirname + '/client/index.html'));
 });
 
 io.on('connection', function(socket){
@@ -42,5 +42,6 @@ io.on('connection', function(socket){
   });
 })
 
+//http instead of app due to Socket.IO
 http.listen(3000);
 console.log('Flipnote server listening at 3000');

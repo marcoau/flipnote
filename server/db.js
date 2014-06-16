@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-
 var path = require('path');
 var fs = require('fs');
 
@@ -10,3 +9,12 @@ fs.readdirSync(modelsPath).forEach(function (file) {
     require(modelsPath + '/' + file);
   }
 });
+
+var Note = mongoose.model('Note');
+
+
+exports.getAllNotes = function(req, res){
+  Note.find({}, function(err, data){
+    res.send(data);
+  });
+};
