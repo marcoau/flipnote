@@ -5,6 +5,7 @@
 
   <!-- css files -->
   <link rel='stylesheet' href="css/main.css">
+  <link rel='stylesheet' href="modules/folders/folders.css">
   <link rel='stylesheet' href="modules/notes/notes.css">
 
 </head>
@@ -13,8 +14,8 @@
 
   <h1>Flipnote</h1>
   <hr>
-  <div ui-view='folders'></div>
-  <div ui-view='notes'></div>
+  <div class='component component-folders' ui-view='folders'></div>
+  <div class='component component-notes' ui-view='notes'></div>
 
   <!-- dependencies -->
   <script src="/socket.io/socket.io.js"></script>
@@ -25,6 +26,7 @@
 
   <!-- Angular js files -->
   <script src="modules/app/app.js"></script>
+  <script src="modules/folders/folders.js"></script>
   <script src="modules/notes/notes.js"></script>
 
 </body>

@@ -8,14 +8,18 @@ var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 
 //require all MongoDB Model files, and initialize all model schemas
-var modelsPath = path.join(__dirname, '/db_models');
-fs.readdirSync(modelsPath).forEach(function (file) {
-  if (/(.*)\.(js$|coffee$)/.test(file)) {
-    require(modelsPath + '/' + file);
-  }
-});
+// var modelsPath = path.join(__dirname, '/db_models');
+// fs.readdirSync(modelsPath).forEach(function (file) {
+//   if (/(.*)\.(js$|coffee$)/.test(file)) {
+//     require(modelsPath + '/' + file);
+//   }
+// });
+
+//simple way to import DB models
+var models = require('./db_models');
 
 var Note = mongoose.model('Note');
+var Folder = mongoose.model('Folder');
 
 //general note functions
 exports.getAllNotes = function(req, res){

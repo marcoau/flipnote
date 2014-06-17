@@ -1,5 +1,6 @@
 angular.module('app', [
   'ui.router',
+  'app.folders',
   'app.notes'
   ])
   .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
@@ -7,13 +8,15 @@ angular.module('app', [
       .state('home', {
         url: '/',
         views: {
+          'folders': {
+            templateUrl: '/modules/folders/folders.html',
+            controller: 'FoldersCtrl'
+          },
           'notes': {
             templateUrl: '/modules/notes/notes.html',
             controller: 'NotesCtrl'
           }
         }
-        // templateUrl: '/modules/home/home.html',
-        // controller: 'HomeCtrl'
       })
       .state('test', {
         url: '/test',

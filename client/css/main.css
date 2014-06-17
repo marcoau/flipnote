@@ -22,10 +22,20 @@ h1{
   font-size: 3em;
   margin: 0.2em 0;
 }
-
 hr{
   height: 3px;
   border: 0;
   
   background-color: black;
+}
+
+.component{
+  display: inline-block;
+  vertical-align: top;
+}
+.component-folders{
+  width: 18%;
+}
+.component-notes{
+  width: 78%;
 }

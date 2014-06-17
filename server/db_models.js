@@ -10,3 +10,11 @@ var noteSchema = new Schema({
 });
 
 var Note = mongoose.model('Note', noteSchema);
+
+//folder model
+var folderSchema = new Schema({
+  name: String,
+  notes: [noteSchema]
+});
+
+var Folder = mongoose.model('Folder', folderSchema);

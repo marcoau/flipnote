@@ -1,0 +1,20 @@
+/*
+
+CSS template{
+  [arrangement]
+  [position]
+  ...
+  [sizing]
+  [margin]
+  ...
+  [border/padding]
+  [internal format]
+}
+
+margin shorthand: top right bottom left;
+
+*/
+
+.folders{
+  margin: 0 0 0 5%;
+}
