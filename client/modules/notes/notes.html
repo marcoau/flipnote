@@ -4,7 +4,6 @@
 
 <div class='notes'>
   <div class='note' ng-repeat='note in notes' ng-class='{unsynced: note.unsynced}' ng-blur='updateNote(note)'>
-    {{note.unsynced}}
 
     <p class='button-flip' ng-click='flip(note)'>&#9701;</p>
     <button class='button-delete' ng-click='delete(note)'>D</button>

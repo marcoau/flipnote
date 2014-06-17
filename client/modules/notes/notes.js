@@ -1,6 +1,6 @@
-angular.module('app.home',[])
+angular.module('app.notes',[])
 
-  .controller('HomeCtrl', ['$scope', '$state', '$http', function($scope, $state, $http){
+  .controller('NotesCtrl', ['$scope', '$state', '$http', function($scope, $state, $http){
 
     //create Socket instance here; not ideal and to be relocated
     var socket = io();

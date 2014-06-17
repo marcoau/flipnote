@@ -5,13 +5,16 @@
 
   <!-- css files -->
   <link rel='stylesheet' href="css/main.css">
+  <link rel='stylesheet' href="modules/notes/notes.css">
+
 </head>
 <body>
 <!-- <body ng-app='app'> -->
 
   <h1>Flipnote</h1>
   <hr>
-  <ui-view></ui-view>
+  <div ui-view='folders'></div>
+  <div ui-view='notes'></div>
 
   <!-- dependencies -->
   <script src="/socket.io/socket.io.js"></script>
@@ -22,7 +25,7 @@
 
   <!-- Angular js files -->
   <script src="modules/app/app.js"></script>
-  <script src="modules/home/home.js"></script>
+  <script src="modules/notes/notes.js"></script>
 
 </body>
 </html>
