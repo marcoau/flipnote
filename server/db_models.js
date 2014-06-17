@@ -18,3 +18,33 @@ var folderSchema = new Schema({
 });
 
 var Folder = mongoose.model('Folder', folderSchema);
+
+//testing
+var firstNote = new Note({
+  text_front: 'Hello!',
+  text_back: 'World!',
+  tags: ['basics', 'hello'],
+  last_update: new Date()
+});
+
+var firstFolder = new Folder({
+  name: 'firstFolder',
+  notes: []
+});
+firstFolder.save(function(err, data){
+  // console.log(data);
+  Folder.update({name: 'firstFolder'},
+    {$push: {notes: firstNote}},
+    function(err, data){
+      if(err){
+        console.error(err);
+      }else{
+        console.log(data);
+      }
+    });
+});
+
+Folder.find({name: 'firstFolder'},
+  function(err, data){
+    console.log(data);
+  });
