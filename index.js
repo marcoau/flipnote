@@ -4,7 +4,6 @@ var path = require('path');
 var express = require('express');
 var favicon = require('static-favicon');
 var bodyParser = require('body-parser');
-var router = require('./server/router');
 var app = express();
 
 //custom modules
@@ -25,13 +24,16 @@ app.use(function(req, res, next){
   next();
 });
 
-//load static resources
+//load static resources & misc middlewares
 app.use(express.static(__dirname + '/client'));
-
+app.use(bodyParser());
 //DB routes
 app.get('/notes', db.getAllNotes);
-app.post('/notes/new_note', db.createNewNote);
-app.delete('/notes/id/:id', db.deleteNote);
+app.post('/notes', db.createNewNote);
+app.post('/notes/:id', db.updateNote);
+app.delete('/notes/:id', db.deleteNote);
+
+app.post('/notes/:id/tag', db.addNoteTag);
 
 //load any static views if it is not a specific route
 app.get('/*', function(req, res){

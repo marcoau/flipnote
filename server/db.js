@@ -17,7 +17,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 
 var Note = mongoose.model('Note');
 
-
+//general note functions
 exports.getAllNotes = function(req, res){
   console.log('getAllNotes');
   Note.find({})
@@ -26,15 +26,14 @@ exports.getAllNotes = function(req, res){
       res.send(data);
     });
 };
-
 exports.createNewNote = function(req, res){
   console.log('createNewNote');
   var newNote = new Note({
     text_front: '',
     text_back: '',
+    tags: [],
     last_update: new Date()
   });
-
   newNote.save(function(err){
     if(err){
       console.error(err);
@@ -44,16 +43,51 @@ exports.createNewNote = function(req, res){
     }
   });
 };
-
+exports.updateNote = function(req, res){
+  console.log('updateNote');
+  console.log(req.body);
+  var id = req.param('id');
+  Note.update({_id: new ObjectId(id)},
+    {
+      text_front: req.body.text_front,
+      text_back: req.body.text_back,
+      last_update: new Date()
+    },
+    function(err, note){
+      if(err){
+        console.error(err);
+      }else{
+        //not ideal
+        res.send('updateNote success');
+      }
+    });
+};
 exports.deleteNote = function(req, res){
   var id = req.param('id');
   Note.remove({_id: new ObjectId(id)},
     function(err, data){
       if(err){
         console.error(err);
+        res.send(500, 'Internal Server Error');
       }else{
         // send back latest collection of all notes
-        exports.getAllNotes(req ,res);
+        res.send('deleteNote success');
+      }
+    });
+};
+
+//note tag functions
+exports.addNoteTag = function(req, res){
+  var id = req.param('id');
+  var tag = req.body.tag;
+  Note.update({_id: new ObjectId(id)},
+    {$push: {tags: tag}},
+    function(err, data){
+      if(err){
+        console.error(err);
+        res.send(500, 'Internal Server Error');
+      }else{
+        res.send('addNoteTag success');
       }
     });
 };

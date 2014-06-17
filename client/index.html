@@ -10,39 +10,19 @@
 <!-- <body ng-app='app'> -->
 
   <h1>Flipnote</h1>
-  <h3>Simplicity = power.</h3>
-  <p>A simple app that improves your learning efficiency by 500%</p>
-  <input class='message'></input>
-  <button class='sendMessage'></button>
+  <hr>
   <ui-view></ui-view>
 
   <!-- dependencies -->
-  
   <script src="/socket.io/socket.io.js"></script>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
-  <script src="modules/app.js"></script>
+  <!-- Angular js files -->
+  <script src="modules/app/app.js"></script>
   <script src="modules/home/home.js"></script>
-  <script>
-    // var socket = io();
-
-    // console.log(socket);
-
-    // socket.on('returnTest', function(data){
-    //   console.log(data);
-    // });
-
-    // $(document).ready(function(){
-    //   $('.sendMessage').on('click', function(){
-    //     var message = $('.message').val();
-    //     socket.emit('receiveTest', {message: message});
-    //   });
-    // });
-
-  </script>
 
 </body>
 </html>

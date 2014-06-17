@@ -1,4 +1,5 @@
 /*
+
 CSS template{
   [arrangement]
   [position]
@@ -9,11 +10,29 @@ CSS template{
   [border/padding]
   [internal format]
 }
+
+margin shorthand: top right bottom left;
+
 */
+
 body, textarea, button{
   font-family: 'Helvetica Neue', sans-serif;
 }
+h1{
+  font-size: 3em;
+  margin: 0.2em 0;
+}
 
+hr{
+  height: 3px;
+  border: 0;
+  
+  background-color: black;
+}
+
+.notes{
+  text-align: center;
+}
 .note{
   display: inline-block;
   position: relative;
@@ -24,10 +43,14 @@ body, textarea, button{
 
   border: 3px solid black;
 }
+.unsynced{
+  border-color: rgb(165,42,42);
+}
 .note > textarea{
   width: 90%;
-  height: 90%;
-  margin: 2.5% 5% 2.5% 5%;
+  height: 85%;
+  margin: 1.5% 5% 3% 2%;
+  font-size: 1.2em;
 
   resize: none;
   border: none;
@@ -36,8 +59,47 @@ body, textarea, button{
   background-color: yellow;
 }
 
-.note-buttons{
+button{
+  border: 0;
+  background-color: black;
+  color: white;
+  font-size: 1em;
+}
+
+.button-flip{
   position: absolute;
   right: 0;
   top: 0;
+
+  margin: 0;
+  font-size: 2em;
+}
+
+.button-delete{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.tags{
+  position: absolute;
+  margin: 0 0 0 2%;
+  bottom: 0;
+
+  width: 80%;
+
+  font-style: italic;
+  text-align: left;
+}
+
+.tags > span{
+  margin: 0 1%;
+}
+
+.button-tag{
+  font-size: 1.8em;
+}
+
+.new-tag{
+  border: 1px solid black;
 }
