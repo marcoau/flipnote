@@ -1,6 +1,6 @@
 <div class='new-folder'>
   <button ng-click='toggleNewFolder()'>New folder</button>
-  <input class='new-folder-input' placeholder='...' ng-model='newFolder' ng-show='creatingFolder' ng-keydown='createNewFolder(event)' ng-blur='toggleNewFolder()'\>
+  <input class='new-folder-input' placeholder='...' ng-model='newFolder' ng-show='creatingFolder' ng-keydown='createNewFolder(event)' ng-blur='toggleNewFolder()' focus-me='newFolderFocus'\>
 </div>
 <button ng-click='createNewNote()'>New note</button>
 <span class='notice-syncing' ng-show='updating'>Syncing...</span>

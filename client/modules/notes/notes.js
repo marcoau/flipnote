@@ -4,7 +4,6 @@ angular.module('app.notes',[])
 
     //create Socket instance here; not ideal and to be relocated
     var socket = io();
-    console.log(socket);
 
     //for displaying of sync status
     $rootScope.updating = false;
@@ -53,15 +52,17 @@ angular.module('app.notes',[])
 
     //tag functions
     $scope.toggleNoteTag = function(note){
-      console.log('toggleNoteTag');
       note.addingTag = !note.addingTag;
-      if(!note.addingTag){
+      if(note.addingTag){
+        //utilize focusMe directive
+        note.focusNewTag = true;
+      }else{
         note.newTag = undefined;
       }
     };
     $scope.saveNoteTag = function($event, note){
       if(event.keyCode === 13){
-        //clicked enter
+        //click enter
         
         var newTag = note.newTag;
         note.unsynced = true;
@@ -83,6 +84,32 @@ angular.module('app.notes',[])
         //update tagbox
         note.addingTag = false;
         note.newTag = undefined;
+
+      }else if(event.keyCode === 27){
+        //click esc
+        $scope.toggleNoteTag();
+      }
+
+    };
+  }])
+
+  //used to focus textboxes
+  .directive('focusMe', function($timeout, $parse){
+    return {
+      link: function(scope, element, attrs){
+        var model = $parse(attrs.focusMe);
+        scope.$watch(model, function(value){
+          if(value === true){
+            $timeout(function(){
+              element[0].focus(); 
+            });
+          }
+        });
+        // set attribute value to 'undefined' on blur event:
+        element.bind('blur', function(){
+           scope.$apply(model.assign(scope, undefined));
+        });
       }
     };
-  }]);
+  });
+

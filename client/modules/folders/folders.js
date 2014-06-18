@@ -23,8 +23,6 @@ angular.module('app.folders',[])
       //toggle status
       $rootScope.updating = true;
 
-      console.log('getFolderNotes');
-
       //update folder status
       folder.active = true;
       $rootScope.activeFolder = folder;
@@ -48,10 +46,12 @@ angular.module('app.folders',[])
     };
     $scope.createNewFolder = function($event){
       if(event.keyCode === 13 && $scope.newFolder){
-        //close new folder box
+        //click enter
+
         //toggle status
         $rootScope.updating = true;
         var newFolder = $scope.newFolder;
+        //close new folder box
         $scope.toggleNewFolder();
 
         $http({
@@ -73,6 +73,12 @@ angular.module('app.folders',[])
     };
     $scope.toggleNewFolder = function(){
       $scope.creatingFolder = !$scope.creatingFolder;
+      //jquery, to be refactored
+      if($scope.creatingFolder){
+        //utilize focusMe directive
+        $scope.newFolderFocus = true;
+      }
+
       $scope.newFolder = undefined;
     };
 
@@ -91,7 +97,7 @@ angular.module('app.folders',[])
           $rootScope.notes = _.map(data, function(note){
             return _.extend(note, {
               flipped: false,
-              unsynced: false
+              unsynced: false,
             });
           });
           //toggle status
@@ -104,6 +110,27 @@ angular.module('app.folders',[])
     };
 
     $scope.creatingFolder = false;
+    $scope.newFolderFocus = false;
     //fetch all folders on load
     $scope.fetchFolders();
-  }]);
+  }])
+
+  //used to focus textboxes
+  .directive('focusMe', function($timeout, $parse){
+    return {
+      link: function(scope, element, attrs){
+        var model = $parse(attrs.focusMe);
+        scope.$watch(model, function(value){
+          if(value === true){ 
+            $timeout(function(){
+              element[0].focus(); 
+            });
+          }
+        });
+        // set attribute value to 'false' on blur event:
+        element.bind('blur', function(){
+           scope.$apply(model.assign(scope, false));
+        });
+      }
+    };
+  });

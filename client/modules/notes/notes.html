@@ -9,7 +9,7 @@
 
     <div class='tags'>
       <span class='button-tag' ng-click='toggleNoteTag(note)'>+</span>
-      <input class='new-tag' placeholder='...'\ ng-model='note.newTag' ng-show='note.addingTag' ng-keydown='saveNoteTag(event, note)' ng-blur='toggleNoteTag(note)'>
+      <input class='new-tag' placeholder='...'\ ng-model='note.newTag' ng-show='note.addingTag' ng-keydown='saveNoteTag(event, note)' ng-blur='toggleNoteTag(note)' focus-me='note.focusNewTag'>
       <span class='tag' ng-repeat='tag in note.tags'>{{tag}}</span>
     </div>
 
