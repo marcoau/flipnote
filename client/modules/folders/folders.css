@@ -27,3 +27,23 @@ margin shorthand: top right bottom left;
 .folders .active{
   color: blue;
 }
+
+.new-folder{
+  position: relative;
+  width: 50%;
+}
+.new-folder-button, .new-folder-input{
+  /*hard-coded; to be updated*/
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 120px;
+  height: 30px;
+
+  margin: 0;
+  border: 0;
+}
+.new-folder-input{
+  padding: 2px;
+}

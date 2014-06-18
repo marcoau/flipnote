@@ -35,7 +35,8 @@ angular.module('app.folders',[])
         $rootScope.notes = _.map(data, function(note){
           return _.extend(note, {
             flipped: false,
-            unsynced: false
+            unsynced: false,
+            addingTag: false
           });
         });
         $rootScope.updating = false;
@@ -77,36 +78,11 @@ angular.module('app.folders',[])
       if($scope.creatingFolder){
         //utilize focusMe directive
         $scope.newFolderFocus = true;
+      }else{
+        console.log('false');
+        $scope.newFolderFocus = false;
       }
-
       $scope.newFolder = undefined;
-    };
-
-    $scope.createNewNote = function($event){
-      //check if there is an active folder to create note in
-      if($rootScope.activeFolder){
-        //toggle status
-        $rootScope.updating = true;
-
-        $http({
-          method: 'POST',
-          url: '/folders/' + $rootScope.activeFolder._id + '/notes'
-        })
-        .success(function(data){
-          //necessary due to _id of new note
-          $rootScope.notes = _.map(data, function(note){
-            return _.extend(note, {
-              flipped: false,
-              unsynced: false,
-            });
-          });
-          //toggle status
-          $rootScope.updating = false;
-        })
-        .error(function(error){
-          console.error(error);
-        });        
-      }
     };
 
     $scope.creatingFolder = false;
@@ -125,11 +101,16 @@ angular.module('app.folders',[])
             $timeout(function(){
               element[0].focus(); 
             });
+          }else{
+            $timeout(function(){
+              element[0].blur();
+            });
           }
         });
         // set attribute value to 'false' on blur event:
         element.bind('blur', function(){
-           scope.$apply(model.assign(scope, false));
+          console.log('here');
+          scope.$apply(model.assign(scope, false));
         });
       }
     };

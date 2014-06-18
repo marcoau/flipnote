@@ -15,7 +15,7 @@ margin shorthand: top right bottom left;
 
 */
 
-body, textarea, button{
+body, textarea, input, button{
   font-family: 'Helvetica Neue', sans-serif;
 }
 h1{
@@ -36,6 +36,14 @@ hr{
 .component-folders{
   width: 18%;
 }
+.component-separator{
+  width: 3px;
+  /*hard-coded height; to be fixed*/
+  height: 600px;
+
+  background-color: black;
+}
 .component-notes{
   width: 78%;
+  /*border-left: 3px solid black;*/
 }

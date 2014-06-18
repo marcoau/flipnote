@@ -1,4 +1,6 @@
-<div class='notes'>
+<button ng-show='activeFolder' ng-click='createNewNote()'>New note</button>
+
+<div class='notes' ng-show='activeFolder'>
   <div class='note' ng-repeat='note in notes' ng-class='{unsynced: note.unsynced}' ng-blur='updateNote(note)'>
 
     <p class='button-flip' ng-click='flip(note)'>&#9701;</p>
@@ -9,7 +11,7 @@
 
     <div class='tags'>
       <span class='button-tag' ng-click='toggleNoteTag(note)'>+</span>
-      <input class='new-tag' placeholder='...'\ ng-model='note.newTag' ng-show='note.addingTag' ng-keydown='saveNoteTag(event, note)' ng-blur='toggleNoteTag(note)' focus-me='note.focusNewTag'>
+      <input class='new-tag' placeholder='...'\ ng-model='note.newTag' ng-show='note.addingTag' ng-keydown='saveNoteTag(event, note)' ng-blur='toggleNoteTag(note)' focus-tag='note.focusNewTag'>
       <span class='tag' ng-repeat='tag in note.tags'>{{tag}}</span>
     </div>
 
