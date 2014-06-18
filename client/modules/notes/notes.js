@@ -112,11 +112,6 @@ angular.module('app.notes',[])
         .error(function(error){
           console.error(error);
         });
-
-        //update tagbox
-        note.addingTag = false;
-        note.newTag = undefined;
-
       }
 
     };

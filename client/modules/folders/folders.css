@@ -15,9 +15,11 @@ margin shorthand: top right bottom left;
 
 */
 .notice-syncing{
+  font-size: 1.5em;
   color: red;
 }
 .notice-synced{
+  font-size: 1.5em;
   color: green;
 }
 
@@ -30,7 +32,10 @@ margin shorthand: top right bottom left;
 
 .new-folder{
   position: relative;
+  float: left;
+
   width: 50%;
+  height: 33px;
 }
 .new-folder-button, .new-folder-input{
   /*hard-coded; to be updated*/

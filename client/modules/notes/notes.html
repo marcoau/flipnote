@@ -1,4 +1,6 @@
-<button ng-show='activeFolder' ng-click='createNewNote()'>New note</button>
+<div class='new-note' ng-show='activeFolder' ng-click='createNewNote()'>
+  <span class='new-note-plus'>+</span><span class='new-note-flip'>&#9701;</span>
+</div>
 
 <div class='notes' ng-show='activeFolder'>
   <div class='note' ng-repeat='note in notes' ng-class='{unsynced: note.unsynced}' ng-blur='updateNote(note)'>

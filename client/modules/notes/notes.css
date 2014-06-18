@@ -14,6 +14,45 @@ CSS template{
 margin shorthand: top right bottom left;
 
 */
+.new-note{
+  position: relative;
+
+  width: 40px;
+  height: 40px;
+
+  border: 2px solid black;
+}
+.new-note-plus{
+  position: absolute;
+  /*make the span unselectable*/
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  left: 0.1em;
+  top: 0.4em;
+
+  margin: 0 0 0 0;
+
+  font-size: 3em;
+  line-height: 0em;
+  font-weight: 800;
+}
+.new-note-flip{
+  position: absolute;
+  /*make the span unselectable*/
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  right: 0;
+  top: 0.4em;
+
+  margin: 0;
+
+  font-size: 1em;
+  line-height: 0em;
+}
 
 .notes{
   text-align: center;
