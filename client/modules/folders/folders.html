@@ -1,6 +1,14 @@
+<div class='new-folder'>
+  <button ng-click='toggleNewFolder()'>New folder</button>
+  <input class='new-folder-input' placeholder='...' ng-model='newFolder' ng-show='creatingFolder' ng-keydown='createNewFolder(event)' ng-blur='toggleNewFolder()'\>
+</div>
+<button ng-click='createNewNote()'>New note</button>
+<span class='notice-syncing' ng-show='updating'>Syncing...</span>
+<span class='notice-synced' ng-hide='updating'>Synced.</span>
+
 <h3>Folders</h3>
 <div class='folders'>
-  <div ng-repeat='folder in folders'>
-    <p>{{folder.name}}</p>
+  <div class='folder' ng-repeat='folder in folders' ng-class='{"active": folder.active}'>
+    <p ng-click='getFolderNotes(folder)'>{{folder.name}}</p>
   </div>
 </div>

@@ -27,13 +27,18 @@ app.use(function(req, res, next){
 //load static resources & misc middlewares
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser());
-//DB routes
-app.get('/notes', db.getAllNotes);
-app.post('/notes', db.createNewNote);
-app.post('/notes/:id', db.updateNote);
-app.delete('/notes/:id', db.deleteNote);
 
-app.post('/notes/:id/tag', db.addNoteTag);
+//DB routes
+app.get('/folders', db.getAllFolders);
+app.post('/folders', db.createNewFolder);
+app.get('/folders/:f_id/notes', db.getFolderNotes);
+
+app.post('/folders/:f_id/notes', db.createNewNote);
+
+app.post('/folders/:f_id/notes/:n_id', db.updateNote);
+app.delete('/folders/:f_id/notes/:n_id', db.deleteNote);
+
+app.post('/folders/:f_id/notes/:n_id/tags', db.addNoteTag);
 
 //load any static views if it is not a specific route
 app.get('/*', function(req, res){

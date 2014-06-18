@@ -21,60 +21,108 @@ var models = require('./db_models');
 var Note = mongoose.model('Note');
 var Folder = mongoose.model('Folder');
 
-//general note functions
-exports.getAllNotes = function(req, res){
-  console.log('getAllNotes');
-  Note.find({})
-    .sort('-last_update')
+//general folder functions
+exports.getAllFolders = function(req, res){
+  console.log('getAllFolders');
+  Folder.find({})
+    .sort('name')
     .exec(function(err, data){
       res.send(data);
     });
 };
+exports.createNewFolder = function(req, res){
+  console.log('createNewFolder');
+  var name = req.body.name;
+  var newFolder = new Folder({
+    name: name,
+    notes: [],
+    last_update: new Date()
+  });
+  newFolder.save(function(err, data){
+    if(err){
+      console.error(err);
+      res.send(500, 'Internal Server Error');
+    }else{
+      exports.getAllFolders(req, res);
+    }
+  })
+};
+
+exports.getFolderNotes = function(req, res){
+  var fId = req.param('f_id');
+  Folder.find({_id: new ObjectId(fId)},
+    function(err, folders){
+      if(err){
+        console.error(err);
+        res.send(500, 'Internal Server Error');
+      }else{
+        var notes = folders[0].notes;
+        //sort the notes by date
+        notes.sort(function(n1, n2){
+          return n2.last_update - n1.last_update;
+        });
+        res.send(notes);
+      }
+    });
+};
 exports.createNewNote = function(req, res){
-  console.log('createNewNote');
+  var fId = req.param('f_id');
   var newNote = new Note({
     text_front: '',
     text_back: '',
     tags: [],
     last_update: new Date()
   });
-  newNote.save(function(err){
-    if(err){
-      console.error(err);
-    }else{
-      // send back latest collection of all notes
-      exports.getAllNotes(req, res);
-    }
-  });
-};
-exports.updateNote = function(req, res){
-  console.log('updateNote');
-  console.log(req.body);
-  var id = req.param('id');
-  Note.update({_id: new ObjectId(id)},
-    {
-      text_front: req.body.text_front,
-      text_back: req.body.text_back,
-      last_update: new Date()
-    },
-    function(err, note){
-      if(err){
-        console.error(err);
-      }else{
-        //not ideal
-        res.send('updateNote success');
-      }
-    });
-};
-exports.deleteNote = function(req, res){
-  var id = req.param('id');
-  Note.remove({_id: new ObjectId(id)},
+  Folder.update(
+    {_id: new ObjectId(fId)},
+    {$push: {notes: newNote}},
     function(err, data){
       if(err){
         console.error(err);
         res.send(500, 'Internal Server Error');
       }else{
-        // send back latest collection of all notes
+        exports.getFolderNotes(req, res);
+      }
+    });
+};
+
+//general note functions
+exports.updateNote = function(req, res){
+  var fId = req.param('f_id');
+  var nId = req.param('n_id');
+  console.log('updateNote');
+  //use $elemMatch to query for embedded documents
+  Folder.update(
+    {
+      _id: new ObjectId(fId),
+      notes: {$elemMatch: {_id: new ObjectId(nId)}}},
+    {
+      'notes.$.text_front': req.body.text_front,
+      'notes.$.text_back': req.body.text_back,
+      'notes.$.last_update': new Date()
+    },
+    function(err, data){
+      if(err){
+        console.error(err);
+        res.send(500, 'Internal Server Error');
+      }else{
+        res.send('updateNote success');
+      }
+    });
+};
+exports.deleteNote = function(req, res){
+  var fId = req.param('f_id');
+  var nId = req.param('n_id');
+  console.log('deleteFolderNote');
+  //use $pull to remove embedded documents from array
+  Folder.update(
+    {_id: new ObjectId(fId)},
+    {$pull: {notes: {_id: new ObjectId(nId)}}},
+    function(err, data){
+      if(err){
+        console.error(err);
+        res.send(500, 'Internal Server Error');
+      }else{
         res.send('deleteNote success');
       }
     });
@@ -82,44 +130,21 @@ exports.deleteNote = function(req, res){
 
 //note tag functions
 exports.addNoteTag = function(req, res){
-  var id = req.param('id');
+  var fId = req.param('f_id');
+  var nId = req.param('n_id');
   var tag = req.body.tag;
-  Note.update({_id: new ObjectId(id)},
-    {$push: {tags: tag}},
+  Folder.update(
+    {
+      _id: new ObjectId(fId),
+      notes: {$elemMatch: {_id: new ObjectId(nId)}}},
+    {$push: {'notes.$.tags': tag}},
     function(err, data){
       if(err){
         console.error(err);
         res.send(500, 'Internal Server Error');
       }else{
+        console.log(data);
         res.send('addNoteTag success');
       }
     });
 };
-
-//real-time updating to database with Socket.IO
-io.on('connection', function(socket){
-
-  //change text_front
-  socket.on('changeFront', function(data){
-    Note.findOneAndUpdate(
-      {_id: new ObjectId(data._id)},
-      {text_front: data.text_front},
-      function(err, data){
-        if(err){
-          console.error(err);
-        }
-      });
-  });
-
-  //change text_back
-  socket.on('changeBack', function(data){
-    Note.findOneAndUpdate(
-      {_id: new ObjectId(data._id)},
-      {text_back: data.text_back},
-      function(err, data){
-        if(err){
-          console.error(err);
-        }
-      });
-  });
-});

@@ -14,7 +14,16 @@ CSS template{
 margin shorthand: top right bottom left;
 
 */
+.notice-syncing{
+  color: red;
+}
+.notice-synced{
+  color: green;
+}
 
 .folders{
   margin: 0 0 0 5%;
+}
+.folders .active{
+  color: blue;
 }

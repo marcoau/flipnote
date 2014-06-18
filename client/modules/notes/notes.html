@@ -1,7 +1,3 @@
-<button ng-click='createNewNote()'>New note</button>
-<div class='status' ng-hide='updating'>Updated</div>
-<div class='status' ng-show='updating'>Saving..</div>
-
 <div class='notes'>
   <div class='note' ng-repeat='note in notes' ng-class='{unsynced: note.unsynced}' ng-blur='updateNote(note)'>
 
