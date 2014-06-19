@@ -25,7 +25,7 @@ var Folder = mongoose.model('Folder');
 exports.getAllFolders = function(req, res){
   console.log('getAllFolders');
   Folder.find({})
-    .sort('name')
+    .sort('-last_update')
     .exec(function(err, data){
       res.send(data);
     });

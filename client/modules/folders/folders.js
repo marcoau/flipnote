@@ -13,6 +13,8 @@ angular.module('app.folders',[])
             active: false
           });
         });
+        //make folder with most recent update time active
+        $scope.getFolderNotes($rootScope.folders[0]);
       })
       .error(function(error){
         console.error(error);
