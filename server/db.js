@@ -75,7 +75,10 @@ exports.createNewNote = function(req, res){
   });
   Folder.update(
     {_id: new ObjectId(fId)},
-    {$push: {notes: newNote}},
+    {
+      last_update: new Date(),
+      $push: {notes: newNote}
+    },
     function(err, data){
       if(err){
         console.error(err);
@@ -97,6 +100,7 @@ exports.updateNote = function(req, res){
       _id: new ObjectId(fId),
       notes: {$elemMatch: {_id: new ObjectId(nId)}}},
     {
+      last_update: new Date(), 
       'notes.$.text_front': req.body.text_front,
       'notes.$.text_back': req.body.text_back,
       'notes.$.last_update': new Date()
@@ -117,7 +121,10 @@ exports.deleteNote = function(req, res){
   //use $pull to remove embedded documents from array
   Folder.update(
     {_id: new ObjectId(fId)},
-    {$pull: {notes: {_id: new ObjectId(nId)}}},
+    {
+      last_update: new Date(),
+      $pull: {notes: {_id: new ObjectId(nId)}}
+    },
     function(err, data){
       if(err){
         console.error(err);
@@ -136,8 +143,12 @@ exports.addNoteTag = function(req, res){
   Folder.update(
     {
       _id: new ObjectId(fId),
-      notes: {$elemMatch: {_id: new ObjectId(nId)}}},
-    {$push: {'notes.$.tags': tag}},
+      notes: {$elemMatch: {_id: new ObjectId(nId)}}
+    },
+    {
+      last_update: new Date(),
+      $push: {'notes.$.tags': tag}
+    },
     function(err, data){
       if(err){
         console.error(err);
