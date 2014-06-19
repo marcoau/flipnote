@@ -23,6 +23,11 @@ angular.module('app.folders',[])
       //toggle status
       $rootScope.updating = true;
 
+      if($rootScope.activeFolder){
+        //change status of old active folder to not active
+        $rootScope.activeFolder.active = false;        
+      }
+
       //update folder status
       folder.active = true;
       $rootScope.activeFolder = folder;

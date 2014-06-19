@@ -14,6 +14,8 @@ CSS template{
 margin shorthand: top right bottom left;
 
 */
+
+/** NEW NOTE BUTTON **/
 .new-note{
   position: relative;
 
@@ -54,6 +56,7 @@ margin shorthand: top right bottom left;
   line-height: 0em;
 }
 
+/** NOTES **/
 .notes{
   text-align: center;
 }
@@ -61,8 +64,8 @@ margin shorthand: top right bottom left;
   display: inline-block;
   position: relative;
 
-  width: 500px;
-  height: 250px;
+  width: 48%;
+  height: 300px;
   margin: 10px;
 
   border: 3px solid black;
@@ -80,7 +83,7 @@ margin shorthand: top right bottom left;
   border: none;
 }
 .note-back{
-  background-color: yellow;
+  font-family: 'Inconsolata';
 }
 
 button{
