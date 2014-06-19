@@ -18,9 +18,25 @@ margin shorthand: top right bottom left;
 body, textarea, input, button{
   font-family: 'Helvetica Neue', sans-serif;
 }
+html, body{
+  height: 100%
+}
+
+/* HEADER */
+.header{
+  /*hack-y CSS to be fixed*/
+  /*position: absolute;*/
+
+  width: 100%;
+  /*hard-coded height to be fixed*/
+  height: 60px;
+  margin: 0 0 20px 0;
+
+  background-color: white;
+}
 h1{
   font-size: 3em;
-  margin: 0.2em 0;
+  margin: 0;
 }
 hr{
   height: 3px;
@@ -29,17 +45,22 @@ hr{
   background-color: black;
 }
 
+/* BODY COMPONENTS */
 .component{
   display: inline-block;
   vertical-align: top;
+
+  height: 80%;
+
+  /*hard-coded padding to be fixed*/
+  /*padding-top: 80px;*/
+  overflow-y: scroll;
 }
 .component-folders{
   width: 18%;
 }
 .component-separator{
   width: 3px;
-  /*hard-coded height; to be fixed*/
-  height: 600px;
 
   background-color: black;
 }

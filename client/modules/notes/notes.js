@@ -8,6 +8,30 @@ angular.module('app.notes',[])
     //for displaying of sync status
     $rootScope.updating = false;
 
+    //define note size classes for dynamic resizing
+    $scope.noteSizeClasses = {
+      1: 'note-extra-small',
+      2: 'note-small',
+      3: 'note-medium',
+      4: 'note-large',
+      5: 'note-extra-large'
+    };
+    $scope.noteSize = 4;
+
+    //zooming in & out
+    $scope.zoomIn = function(){
+      console.log('zoomIn');
+      if($scope.noteSize < 5){
+        $scope.noteSize++;
+      }
+    };
+    $scope.zoomOut = function(){
+      console.log('zoomOut');
+      if($scope.noteSize > 1){
+        $scope.noteSize--;
+      }
+    };
+
     //note functions
     $scope.createNewNote = function(){
       console.log('createNewNote');

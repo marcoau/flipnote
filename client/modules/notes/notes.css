@@ -15,12 +15,16 @@ margin shorthand: top right bottom left;
 
 */
 
-/** NEW NOTE BUTTON **/
+/** NOTES BUTTONs **/
+.note-buttons{
+  position: absolute;
+}
 .new-note{
   position: relative;
-
   width: 40px;
   height: 40px;
+
+  margin-bottom: 10px;
 
   border: 2px solid black;
 }
@@ -34,7 +38,7 @@ margin shorthand: top right bottom left;
   left: 0.1em;
   top: 0.4em;
 
-  margin: 0 0 0 0;
+  margin: 0;
 
   font-size: 3em;
   line-height: 0em;
@@ -48,25 +52,59 @@ margin shorthand: top right bottom left;
   -webkit-user-select: none;
   -o-user-select: none;
   right: 0;
-  top: 0.4em;
+  top: 0.5em;
 
   margin: 0;
 
   font-size: 1em;
   line-height: 0em;
 }
+.zoom-in, .zoom-out{
+  position: relative;
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-bottom: 2px;
+}
+.zoom-in > span, .zoom-out > span{
+  position: absolute;
+  /*make the span unselectable*/
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  left: 0.1em;
+
+  margin: 0;
+
+  line-height: 0em;
+} 
+.zoom-in > span{
+  top: 0.3em;
+
+  font-size: 3em;
+}
+.zoom-out > span{
+  top: 0.25em;
+
+  font-size: 4em;
+}
 
 /** NOTES **/
 .notes{
+  width: 95%;
+  height: 100%;
+
+  padding-left: 40px;
   text-align: center;
 }
 .note{
   display: inline-block;
   position: relative;
 
-  width: 48%;
-  height: 300px;
-  margin: 10px;
+  margin: 0.5%;
 
   border: 3px solid black;
 }
@@ -86,13 +124,13 @@ margin shorthand: top right bottom left;
   font-family: 'Inconsolata';
 }
 
+/* BUTTONS (flip & delete) */
 button{
   border: 0;
   background-color: black;
   color: white;
   font-size: 1em;
 }
-
 .button-flip{
   position: absolute;
   right: 0;
@@ -101,13 +139,13 @@ button{
   margin: 0;
   font-size: 2em;
 }
-
 .button-delete{
   position: absolute;
   right: 0;
   bottom: 0;
 }
 
+/* TAG */
 .tags{
   position: absolute;
   margin: 0 0 0 2%;
@@ -118,19 +156,75 @@ button{
   font-style: italic;
   text-align: left;
 }
-
 .tags > span{
   margin: 0 1%;
 }
-
 .button-tag{
   font-size: 1.8em;
 }
-
 .new-tag{
   border: 0;
   padding: 2px;
 
   font-size: 0.9em;
-  /*border: 1px solid black;*/
+}
+
+/* NOTE SIZES */
+.note-extra-large{
+  width: 97%;
+  height: 97%;
+}
+.note-large{
+  width: 47%;
+  height: 97%;
+}
+
+.note-medium{
+  width: 47%;
+  height: 47%;
+}
+.note-medium > textarea{
+  font-size: 0.9em;
+}
+
+.note-small{
+  width: 31%;
+  height: 30%;
+}
+.note-small > textarea{
+  font-size: 0.7em;
+}
+.note-small > button{
+  font-size: 0.7em;
+}
+.note-small > .button-flip{
+  font-size: 1.4em;
+}
+.note-small .tag{
+  font-size: 0.8em;
+}
+.note-small .button-tag{
+  font-size: 1.4em;
+}
+
+.note-extra-small{
+  width: 18%;
+  height: 18%;
+}
+.note-extra-small > textarea{
+  height: 80%;
+
+  font-size: 0.5em;
+}
+.note-extra-small > button{
+  font-size: 0.5em;
+}
+.note-extra-small > .button-flip{
+  font-size: 1em;
+}
+.note-extra-small .tag{
+  font-size: 0.5em;
+}
+.note-extra-small .button-tag{
+  font-size: 1em;
 }

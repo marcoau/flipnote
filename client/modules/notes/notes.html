@@ -1,9 +1,14 @@
-<div class='new-note' ng-show='activeFolder' ng-click='createNewNote()'>
-  <span class='new-note-plus'>+</span><span class='new-note-flip'>&#9701;</span>
+<div class='note-buttons' ng-show='activeFolder'>
+  <div class='new-note' ng-click='createNewNote()'>
+    <span class='new-note-plus'>+</span><span class='new-note-flip'>&#9701;</span>
+  </div>
+  <div class='zoom-in' ng-click='zoomIn()'><span>+</span></div>
+  <div class='zoom-out' ng-click='zoomOut()'><span>-</span></div>
 </div>
 
+<!-- <div class='notes' ng-show='activeFolder'> -->
 <div class='notes' ng-show='activeFolder'>
-  <div class='note' ng-repeat='note in notes' ng-class='{unsynced: note.unsynced}' ng-blur='updateNote(note)'>
+  <div class='note ng-class:noteSizeClasses[noteSize]' ng-repeat='note in notes' ng-class='{unsynced: note.unsynced}' ng-blur='updateNote(note)'>
 
     <p class='button-flip' ng-click='flip(note)'>&#9701;</p>
     <button class='button-delete' ng-click='delete(note)'>D</button>

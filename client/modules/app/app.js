@@ -17,10 +17,6 @@ angular.module('app', [
             controller: 'NotesCtrl'
           }
         }
-      })
-      .state('test', {
-        url: '/test',
-        templateUrl: '/modules/test/test.html'
       });
 
      $urlRouterProvider.otherwise('/');

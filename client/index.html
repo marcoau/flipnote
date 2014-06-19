@@ -4,7 +4,7 @@
   <title>Flipnote</title>
   <!-- Google Fonts -->
   <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-  
+
   <!-- css files -->
   <link rel='stylesheet' href="css/main.css">
   <link rel='stylesheet' href="modules/folders/folders.css">
@@ -14,8 +14,11 @@
 <body>
 <!-- <body ng-app='app'> -->
 
-  <h1>Flipnote</h1>
-  <hr>
+
+  <div class='header'>
+    <h1>Flipnote</h1>
+    <hr>
+  </div>
   <div class='component component-folders' ui-view='folders'></div>
   <div class='component component-separator'></div>
   <div class='component component-notes' ui-view='notes'></div>
