@@ -70,6 +70,7 @@ angular.module('app.notes',[])
         method: 'POST',
         url: '/folders/' + $rootScope.activeFolder._id + '/notes/' + note._id,
         data: {
+          title: note.title,
           text_front: note.text_front,
           text_back: note.text_back
         }

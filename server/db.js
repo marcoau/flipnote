@@ -68,6 +68,7 @@ exports.getFolderNotes = function(req, res){
 exports.createNewNote = function(req, res){
   var fId = req.param('f_id');
   var newNote = new Note({
+    title: '',
     text_front: '',
     text_back: '',
     tags: [],
@@ -100,7 +101,8 @@ exports.updateNote = function(req, res){
       _id: new ObjectId(fId),
       notes: {$elemMatch: {_id: new ObjectId(nId)}}},
     {
-      last_update: new Date(), 
+      last_update: new Date(),
+      'notes.$.title': req.body.title,
       'notes.$.text_front': req.body.text_front,
       'notes.$.text_back': req.body.text_back,
       'notes.$.last_update': new Date()

@@ -13,6 +13,8 @@
     <p class='button-flip' ng-click='flip(note)'>&#9701;</p>
     <button class='button-delete' ng-click='delete(note)'>D</button>
 
+    <input class='note-title' ng-model='note.title' ng-blur='updateNote(note)' value='Bubble' \>
+
     <textarea class='note-front' ng-model='note.text_front' ng-hide='note.flipped' ng-blur='updateNote(note)'></textarea>
     <textarea class='note-back' ng-model='note.text_back' ng-show='note.flipped' ng-blur='updateNote(note)'></textarea>
 

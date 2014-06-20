@@ -111,14 +111,26 @@ margin shorthand: top right bottom left;
 .unsynced{
   border-color: rgb(165,42,42);
 }
+.note > .note-title{
+  width: 90%;
+  height: 10%;
+  margin: 1% 5% 0 2%;
+
+  border: none;
+  border-bottom: 2px solid black;
+
+  font-size: 1.4em;
+  font-weight: bold;
+}
 .note > textarea{
   width: 90%;
-  height: 85%;
-  margin: 1.5% 5% 3% 2%;
-  font-size: 1.2em;
+  height: 80%;
+  margin: 1% 5% 3% 2%;
 
   resize: none;
   border: none;
+
+  font-size: 1.2em;
 }
 .note-back{
   font-family: 'Inconsolata';
@@ -191,7 +203,12 @@ button{
   width: 31%;
   height: 30%;
 }
+.note-small > .note-title{
+  /*height: 20%;*/
+}
 .note-small > textarea{
+  margin-top: 0;
+
   font-size: 0.7em;
 }
 .note-small > button{
@@ -211,10 +228,13 @@ button{
   width: 18%;
   height: 18%;
 }
-.note-extra-small > textarea{
-  height: 80%;
+.note-extra-small > .note-title{
+  height: 70%;
 
-  font-size: 0.5em;
+  border-bottom: 0;
+}
+.note-extra-small > textarea{
+  display: none;
 }
 .note-extra-small > button{
   font-size: 0.5em;
