@@ -18,6 +18,7 @@ var ObjectId = mongoose.Types.ObjectId;
 //simple way to import DB models
 var models = require('./db_models');
 
+var User = exports.User = mongoose.model('User');
 var Note = mongoose.model('Note');
 var Folder = mongoose.model('Folder');
 

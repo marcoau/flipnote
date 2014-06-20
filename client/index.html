@@ -16,7 +16,9 @@
 
 
   <div class='header'>
-    <h1>Flipnote</h1>
+    <h1>Flipnote {{test}}</h1>
+    <!-- preventing Angular UI-router from taking over control -->
+    <a href='logout' ng-click='$event.stopPropagation()'>Logout</a>
     <hr>
   </div>
   <div class='component component-folders' ui-view='folders'></div>

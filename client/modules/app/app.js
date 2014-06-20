@@ -16,9 +16,10 @@ angular.module('app', [
             templateUrl: '/modules/notes/notes.html',
             controller: 'NotesCtrl'
           }
-        }
+        },
       });
-
+      //
      $urlRouterProvider.otherwise('/');
      $locationProvider.html5Mode(true);
   }]);
+  

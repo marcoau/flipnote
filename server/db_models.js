@@ -1,5 +1,25 @@
+var bcrypt = require('bcrypt');
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
+//user model
+var userSchema = new Schema({
+  username: String,
+  password: String
+});
+//USER METHODS
+// generating a hash
+userSchema.methods.generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+};
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
+var User = mongoose.model('User', userSchema);
+
 
 //note model
 var noteSchema = new Schema({
@@ -20,3 +40,16 @@ var folderSchema = new Schema({
 });
 
 var Folder = mongoose.model('Folder', folderSchema);
+
+// var user = new User({
+//   user: 'marco',
+//   password: 'au'
+// });
+
+// user.save(function(err, data){
+//   if(err){
+//     console.log(err);
+//   }
+//   console.log(data);
+// });
+//  
