@@ -52,7 +52,6 @@ exports.deleteFolder = function(req, res){
         console.error(err);
         res.send(500, 'Internal Server Error');
       }else{
-        console.log('delete yay');
         res.send('deleteFolder success');
       }
     });
