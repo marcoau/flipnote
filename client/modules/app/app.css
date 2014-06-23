@@ -38,6 +38,16 @@ h1{
   font-size: 3em;
   margin: 0;
 }
+.header a{
+  position: absolute;
+  right: 140px;
+  top: 20px;
+
+  background-color: rgb(200, 200, 200);
+
+  text-decoration: none;
+  font-size: 2em;
+}
 hr{
   height: 3px;
   border: 0;

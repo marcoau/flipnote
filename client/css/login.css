@@ -1,0 +1,88 @@
+/*
+
+CSS template{
+  [arrangement]
+  [position]
+  ...
+  [sizing]
+  [margin]
+  ...
+  [border/padding]
+  [internal format]
+}
+
+margin shorthand: top right bottom left;
+
+*/
+
+body, textarea, input, button{
+  font-family: 'Helvetica Neue', sans-serif;
+}
+html, body{
+  height: 100%;
+}
+
+/* JUMBOTRON */
+.jumbotron{
+  margin-top: 2%;
+
+  padding: 5%;
+  background-color: rgb(230,230,230);
+
+  text-align: center;
+}
+.jumbotron > h1{
+  margin: 0;
+
+  font-size: 5em;
+}
+.jumbotron > .tagline{
+  margin: 0;
+
+  font-size: 2em;
+}
+
+.account-options{
+  width: 50%;
+  margin: 10px auto;
+
+  text-align: center;
+}
+.account-signup, .account-login{
+  display: inline-block;
+
+  width: 40%;
+  margin: 10px;
+  padding: 10px;
+
+  border: 2px solid rgb(200,200,200);
+  border-radius: 20px;
+}
+.account-options h4{
+  margin: 0 0 10px 0;
+}
+.account-options input{
+  border: 2px solid rgb(200,200,200);
+  border-radius: 5px;
+}
+.account-signup div, .account-login div{
+  display: inline-block;
+
+  text-align: left;
+  vertical-align: top;
+}
+.account-input{
+  width: 70%;
+}
+.account-input input{
+  font-size: 1em;  
+}
+.account-submit{
+  width: 25%;
+}
+.account-submit input{
+  width: 100%;
+  height: 4em;
+
+  font-size: 1em;
+}

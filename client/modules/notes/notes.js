@@ -1,4 +1,4 @@
-angular.module('app.notes',[])
+angular.module('app.notes', ['ngCookies'])
 
   .controller('NotesCtrl', ['$rootScope', '$scope', '$state', '$http', function($rootScope, $scope, $state, $http){
 

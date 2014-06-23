@@ -26,7 +26,7 @@ margin shorthand: top right bottom left;
 .folders{
   margin: 0 0 0 5%;
 }
-.folders .active{
+.folders .active span{
   color: blue;
 }
 

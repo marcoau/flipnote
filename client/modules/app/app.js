@@ -18,7 +18,7 @@ angular.module('app', [
           }
         },
       });
-      //
+
      $urlRouterProvider.otherwise('/');
      $locationProvider.html5Mode(true);
   }]);

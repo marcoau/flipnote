@@ -7,37 +7,32 @@ var mongoose = require('mongoose');
 //for queries by ObjectId
 var ObjectId = mongoose.Types.ObjectId;
 
-//require all MongoDB Model files, and initialize all model schemas
-// var modelsPath = path.join(__dirname, '/db_models');
-// fs.readdirSync(modelsPath).forEach(function (file) {
-//   if (/(.*)\.(js$|coffee$)/.test(file)) {
-//     require(modelsPath + '/' + file);
-//   }
-// });
-
 //simple way to import DB models
 var models = require('./db_models');
 
+//declare models here
 var User = exports.User = mongoose.model('User');
 var Note = mongoose.model('Note');
 var Folder = mongoose.model('Folder');
 
 //general folder functions
 exports.getAllFolders = function(req, res){
-  console.log('getAllFolders');
-  Folder.find({})
+  var user_id = req.user._id;
+  Folder.find({user_id: user_id})
     .sort('-last_update')
     .exec(function(err, data){
       res.send(data);
     });
 };
 exports.createNewFolder = function(req, res){
-  console.log('createNewFolder');
+  //get user id from req.user (passport stored data)
+  var user_id = req.user._id;
   var name = req.body.name;
   var newFolder = new Folder({
     name: name,
     notes: [],
-    last_update: new Date()
+    last_update: new Date(),
+    user_id: user_id
   });
   newFolder.save(function(err, data){
     if(err){
@@ -47,6 +42,20 @@ exports.createNewFolder = function(req, res){
       exports.getAllFolders(req, res);
     }
   })
+};
+exports.deleteFolder = function(req, res){
+  var user_id = req.user._id;
+  var fId = req.param('f_id');
+  Folder.remove({_id: new ObjectId(fId)},
+    function(err, data){
+      if(err){
+        console.error(err);
+        res.send(500, 'Internal Server Error');
+      }else{
+        console.log('delete yay');
+        res.send('deleteFolder success');
+      }
+    });
 };
 
 exports.getFolderNotes = function(req, res){

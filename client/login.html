@@ -1,27 +1,60 @@
-<form action="/login" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
-    </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flipnote</title>
+  <!-- css files -->
+  <link rel='stylesheet' href="css/login.css">
 
-<form action="/signup" method="post">
-    <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
+</head>
+<body>
+
+  <div class='jumbotron'>
+    <h1>Flipnote</h1>
+    <div class='tagline'>
+      <p>Simple, effective flashcard note taking</p>
     </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
+  </div>
+
+  <div class='account-options'>
+
+    <div class='account-signup'>
+      <h4>Signup to try our powerful features!</h4>
+      <form action="/signup" method="post">
+        <div class='account-input'>
+          <input type="text" name="username" placeholder='username' \>
+          <input type="password" name="password" placeholder='password' \>
+        </div>
+        <div class='account-submit'>
+          <input type="submit" value="Sign Up" \>
+        </div>
+      </form>
     </div>
-    <div>
-        <input type="submit" value="Sign Up"/>
+
+    <div class='account-login'>
+      <h4>Already have an account?</h4>
+      <form action="/login" method="post">
+        <div class='account-input'>
+          <input type="text" name="username" placeholder='username' \>
+          <input type="password" name="password" placeholder='password' \>
+        </div>
+        <div class='account-submit'>
+          <input type="submit" value="Log In" \>
+        </div>
+      </form>
     </div>
-</form>
+
+  </div>
+
+  <!-- dependencies -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+  <!-- Angular js files -->
+  <script src="modules/app/app.js"></script>
+  <script src="modules/folders/folders.js"></script>
+  <script src="modules/notes/notes.js"></script>
+
+</body>
+</html>

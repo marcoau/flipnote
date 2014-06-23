@@ -36,20 +36,8 @@ var Note = mongoose.model('Note', noteSchema);
 var folderSchema = new Schema({
   name: String,
   notes: [noteSchema],
-  last_update: Date
+  last_update: Date,
+  user_id: String
 });
 
 var Folder = mongoose.model('Folder', folderSchema);
-
-// var user = new User({
-//   user: 'marco',
-//   password: 'au'
-// });
-
-// user.save(function(err, data){
-//   if(err){
-//     console.log(err);
-//   }
-//   console.log(data);
-// });
-//  

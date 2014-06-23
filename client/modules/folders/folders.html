@@ -8,6 +8,7 @@
 <h3>Folders</h3>
 <div class='folders'>
   <div class='folder' ng-repeat='folder in folders' ng-class='{"active": folder.active}'>
-    <p ng-click='getFolderNotes(folder)'>{{folder.name}}</p>
+    <span ng-click='getFolderNotes(folder)'>{{folder.name}}</span>
+    <button ng-click='deleteFolder(folder)'>D</button>
   </div>
 </div>

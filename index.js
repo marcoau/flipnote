@@ -40,17 +40,6 @@ app.use(function(req, res, next){
   next();
 });
 
-var authCheck = function(req, res, next){
-  //'/login' is the only exception to authCheck; to be updated
-  if(req.isAuthenticated() || req.url === '/login'){
-    console.log('logged in');
-    next();
-  }else{
-    res.redirect('/login');  
-  }
-};
-app.use(authCheck);
-
 //load static resources & misc middlewares
 app.use(express.static(__dirname + '/client'));
 app.use(bodyParser());

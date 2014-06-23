@@ -3,6 +3,9 @@ angular.module('app.folders',[])
   .controller('FoldersCtrl', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
 
     $scope.fetchFolders = function(){
+      //toggle status
+      $rootScope.updating = true;
+
       $http({
         method: 'GET',
         url: '/folders',
@@ -13,8 +16,11 @@ angular.module('app.folders',[])
             active: false
           });
         });
-        //make folder with most recent update time active
-        $scope.getFolderNotes($rootScope.folders[0]);
+        //if there are folders, make folder with most recent update time active
+        if($scope.folders.length){
+          $scope.getFolderNotes($rootScope.folders[0]);          
+        }
+        $rootScope.updating = false;
       })
       .error(function(error){
         console.error(error);
@@ -52,6 +58,23 @@ angular.module('app.folders',[])
         console.error(error);
       });
     };
+    
+    $scope.deleteFolder = function(folder){
+      //toggle status
+      $rootScope.updating = true;
+
+      $http({
+        method: 'DELETE',
+        url: '/folders/' + folder._id
+      })
+      .success(function(data){
+        $rootScope.updating = false;
+        $rootScope.folders.splice($rootScope.folders.indexOf(folder), 1);
+      })
+      .error(function(error){
+        console.error(error);
+      });
+    };
     $scope.createNewFolder = function($event){
       if(event.keyCode === 13 && $scope.newFolder){
         //click enter
@@ -81,17 +104,17 @@ angular.module('app.folders',[])
     };
     $scope.toggleNewFolder = function(){
       $scope.creatingFolder = !$scope.creatingFolder;
-      //jquery, to be refactored
+
       if($scope.creatingFolder){
         //utilize focusMe directive
         $scope.newFolderFocus = true;
       }else{
-        console.log('false');
         $scope.newFolderFocus = false;
       }
       $scope.newFolder = undefined;
     };
 
+    $rootScope.updating = false;
     $scope.creatingFolder = false;
     $scope.newFolderFocus = false;
     //fetch all folders on load
