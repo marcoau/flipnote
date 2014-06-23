@@ -4,6 +4,8 @@ module.exports = function(grunt){
   grunt.initConfig({
     //grunt packages specified in npm file
     pkg: grunt.file.readJSON('package.json'),
+
+    //test
     jshint: {
       files: [
         'client/**/*.js',
@@ -17,13 +19,20 @@ module.exports = function(grunt){
           'client/bower_components/**/*.js'
         ]
       }
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
+
   });
 
   //load Grunt tasks installed by npm
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('test', [
-    'jshint'
+    'jshint', 'karma'
   ]);
 };

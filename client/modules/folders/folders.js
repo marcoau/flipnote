@@ -18,7 +18,7 @@ angular.module('app.folders',[])
         });
         //if there are folders, make folder with most recent update time active
         if($scope.folders.length){
-          $scope.getFolderNotes($rootScope.folders[0]);          
+          $scope.getFolderNotes($rootScope.folders[0]);
         }
         $rootScope.updating = false;
       })

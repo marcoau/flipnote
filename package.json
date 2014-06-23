@@ -26,6 +26,15 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.10.0"
+    "grunt-contrib-jshint": "^0.10.0",
+    "karma": "^0.12.16",
+    "grunt-karma": "^0.8.3",
+    "karma-chrome-launcher": "^0.1.4",
+    "should": "^4.0.4",
+    "requirejs": "^2.1.14",
+    "karma-requirejs": "^0.2.2",
+    "karma-mocha": "^0.1.4",
+    "chai": "^1.9.1",
+    "karma-chai": "^0.1.0"
   }
 }
