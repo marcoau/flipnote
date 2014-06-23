@@ -125,7 +125,7 @@ margin shorthand: top right bottom left;
 .note > textarea{
   width: 90%;
   height: 80%;
-  margin: 1% 5% 3% 2%;
+  margin: 0 5% 0% 2%;
 
   resize: none;
   border: none;
@@ -164,9 +164,11 @@ button{
   bottom: 0;
 
   width: 80%;
+  height: 10%;
 
   font-style: italic;
   text-align: left;
+  vertical-align: center;
 }
 .tags > span{
   margin: 0 1%;
@@ -196,7 +198,12 @@ button{
   height: 47%;
 }
 .note-medium > textarea{
+  height: 75%;
+
   font-size: 0.9em;
+}
+.note-medium > .tags{
+  height: 12%;
 }
 
 .note-small{
@@ -204,11 +211,11 @@ button{
   height: 30%;
 }
 .note-small > .note-title{
-  /*height: 20%;*/
+  height: 15%;
+  font-size: 1em;
 }
 .note-small > textarea{
-  margin-top: 0;
-
+  height: 70%;
   font-size: 0.7em;
 }
 .note-small > button{
@@ -217,7 +224,10 @@ button{
 .note-small > .button-flip{
   font-size: 1.4em;
 }
-.note-small .tag{
+.note-small > .tags{
+  height: 14%;
+}
+.note-small .tag{  
   font-size: 0.8em;
 }
 .note-small .button-tag{
@@ -225,7 +235,7 @@ button{
 }
 
 .note-extra-small{
-  width: 18%;
+  width: 31%;
   height: 18%;
 }
 .note-extra-small > .note-title{
@@ -237,13 +247,16 @@ button{
   display: none;
 }
 .note-extra-small > button{
-  font-size: 0.5em;
+  font-size: 0.7em;
 }
 .note-extra-small > .button-flip{
   font-size: 1em;
 }
+.note-extra-small > .tags{
+  height: 20%;
+}
 .note-extra-small .tag{
-  font-size: 0.5em;
+  font-size: 0.7em;
 }
 .note-extra-small .button-tag{
   font-size: 1em;
