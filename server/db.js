@@ -41,7 +41,7 @@ exports.createNewFolder = function(req, res){
     }else{
       exports.getAllFolders(req, res);
     }
-  })
+  });
 };
 exports.deleteFolder = function(req, res){
   var user_id = req.user._id;
