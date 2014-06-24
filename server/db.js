@@ -18,7 +18,9 @@ var Folder = mongoose.model('Folder');
 //general folder functions
 exports.getAllFolders = function(req, res){
   var user_id = req.user._id;
-  Folder.find({user_id: user_id})
+  Folder.find(
+    {user_id: user_id},
+    {name: 1, user_id: 1, last_update: 1})
     .sort('-last_update')
     .exec(function(err, data){
       res.send(data);

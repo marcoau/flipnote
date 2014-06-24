@@ -20,6 +20,7 @@ angular.module('app.folders',[])
         if($scope.folders.length){
           $scope.getFolderNotes($rootScope.folders[0]);
         }
+        console.log($scope.folders);
         $rootScope.updating = false;
       })
       .error(function(error){
@@ -58,7 +59,7 @@ angular.module('app.folders',[])
         console.error(error);
       });
     };
-    
+
     $scope.deleteFolder = function(folder){
       //toggle status
       $rootScope.updating = true;
@@ -98,6 +99,7 @@ angular.module('app.folders',[])
             });
           });
           //toggle status
+          $scope.getFolderNotes($rootScope.folders[0]);
           $rootScope.updating = false;
         });
       }
@@ -139,7 +141,6 @@ angular.module('app.folders',[])
         });
         // set attribute value to 'false' on blur event:
         element.bind('blur', function(){
-          console.log('here');
           scope.$apply(model.assign(scope, false));
         });
       }
