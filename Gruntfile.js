@@ -24,6 +24,20 @@ module.exports = function(grunt){
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+
+    //build
+    useminPrepare: {
+      html: ['client/**/*.html'],
+      options: {
+        root: 'client',
+        dest: '../dist/'
+      }
+    },
+    concat: {
+    },
+    uglify: {
+
     }
 
   });
@@ -31,8 +45,16 @@ module.exports = function(grunt){
   //load Grunt tasks installed by npm
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   grunt.registerTask('test', [
     'jshint', 'karma'
+  ]);
+
+  grunt.registerTask('build', [
+    'useminPrepare', 'concat', 'uglify', 'cssmin', 'usemin'
   ]);
 };
