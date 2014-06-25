@@ -15,7 +15,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // 'test-main.js',
       'client/bower_components/angular/angular.min.js',
       'client/bower_components/underscore/underscore.js',
       // 'client/bower_components/angular-ui-router/release/angular-ui-router.min.js',

@@ -1,7 +1,7 @@
 describe('FoldersCtrl', function(){
   var $httpBackend, $rootScope, createController, testFolders;
 
-  beforeEach(module('app.folders'));
+  beforeEach(angular.mock.module('app.folders'));
 
   beforeEach(inject(function($injector){
     var time = new Date();
@@ -73,24 +73,23 @@ describe('FoldersCtrl', function(){
 
   afterEach(function(){
     //essential for launching next test after one is finished
-    // $httpBackend.verifyNoOutstandingExpectation();
-    // $httpBackend.verifyNoOutstandingRequest();
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should populate $rootScope.folders with folders with GET /folders', function(){
+  it('should populate $rootScope.folders on page load', function(){
     //essential for flushing pending http requests
     var controller = createController();
-
-    $httpBackend.expectGET('/folders');
     $httpBackend.flush();
+
     expect($rootScope.folders.length).to.equal(2);
   });
 
   it('should make the latest-updated folder the active folder', function(){
     //essential for flushing pending http requests
     var controller = createController();
-    $httpBackend.expectGET('/folders');
     $httpBackend.flush();
+
     expect($rootScope.activeFolder.name).to.equal('Angular');
   });
 
@@ -103,13 +102,13 @@ describe('FoldersCtrl', function(){
     expect($rootScope.updating).to.equal(false);
   });
 
-  xit('should make an new folder with correct name when required', function(){
+  it('should make an new folder with correct name when required', function(){
     //essential for flushing pending http requests
     var controller = createController();
     $httpBackend.expectGET('/folders');
     $httpBackend.flush();
 
-    $httpBackend.expectPOST('/folders', {name: 'Ember'});
+    $httpBackend.expectPOST('/folders', {name: 'Ember'}).respond(201, null);
     expect($rootScope.updating).to.equal(true);
     $httpBackend.flush();
 
@@ -130,10 +129,9 @@ describe('FoldersCtrl', function(){
   xit('should remove the correct folder from $rootScope.folder on delete', function(){
     //essential for flushing pending http requests
     var controller = createController();
-    $httpBackend.expectGET('/folders');
-    // $httpBackend.flush();
+    $httpBackend.flush();
 
-    $httpBackend.expectDELETE('/folders/b');
+    $httpBackend.expectDELETE('/folders/b').respond(200, 'deleteNote success');
     $httpBackend.flush();
 
     expect($rootScope.folders.length).to.equal(1);
