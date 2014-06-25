@@ -1,7 +1,6 @@
 //Node dependencies
 var path = require('path');
 var fs = require('fs');
-var io = require('../index').io;
 
 var mongoose = require('mongoose');
 //for queries by ObjectId

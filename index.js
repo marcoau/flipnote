@@ -9,6 +9,9 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var app = express();
 
+//set default NODE_ENV to 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 //Passport Authentiation
 var passport = require('passport');
 //passport configuration
@@ -16,10 +19,6 @@ require('./server/passport').passport(passport);
 
 //custom modules
 var config = require('./server/config');
-
-//Socket.IO boilerplate
-var http = require('http').Server(app);
-var io = exports.io = require('socket.io')(http);
 
 //Mongoose - schemas are imported in db modules
 var mongoose = require('mongoose');
@@ -47,6 +46,5 @@ app.use(bodyParser());
 //load all routes
 require('./server/routes')(app, passport);
 
-//http instead of app due to Socket.IO
-http.listen(3000);
+app.listen(process.env.PORT || 3000);
 console.log('Flipnote server listening at 3000');

@@ -1,6 +1,6 @@
 module.exports = {
   mongo: {
-    uri: 'mongodb://localhost/flipnote'
+    uri: process.env.MONGOLAB_URI || 'mongodb://localhost/flipnote'
   }
 };
 

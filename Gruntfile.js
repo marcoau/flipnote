@@ -31,8 +31,7 @@ module.exports = function(grunt){
       html: ['client/**/*.html'],
       options: {
         root: 'client',
-        dest: '../dist/',
-        // ignore: 'client/bower_components'
+        dest: '../dist/public',
       }
     },
     concat: {
@@ -47,29 +46,43 @@ module.exports = function(grunt){
     cssmin: {
     },
     copy: {
-      main: {
+      client: {
         expand: true,
         cwd: 'client/',
-        src: '**/*.html',
+        //copying bower components to dist
+        src: ['**/*.html', 'bower_components/**/*.*'],
         dest: '../dist/public'
       },
       options: {
         force: true,
         // ignore: 'client/bower_components'
+      },
+      server: {
+        expand: true,
+        src: [
+          'index.js',
+          'package.json',
+          'server/**/*.*'
+        ],
+        dest: '../dist'
       }
     },
     usemin: {
       html: ['../dist/public/**/*.html'],
       options: {
         assetsDirs: [
-          '../dist/public/css',
-          '../dist/public/js'
+          '../dist/public/',
         ]
       }
     },
 
     //clean
-    clean: ['../dist']
+    clean: {
+      src: ['../dist/**/*.*'],
+      options: {
+        force: true
+      }
+    }
   });
 
   //load Grunt tasks installed by npm
@@ -87,6 +100,13 @@ module.exports = function(grunt){
   ]);
 
   grunt.registerTask('build', [
-    'useminPrepare', 'concat', 'uglify', 'cssmin', 'copy:main', 'usemin'
+    'clean',
+    'useminPrepare',
+    'concat',
+    'uglify',
+    'cssmin',
+    'copy:client',
+    'usemin',
+    'copy:server'
   ]);
 };

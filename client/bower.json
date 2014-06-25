@@ -20,7 +20,6 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "underscore": "~1.6.0",
-    "socket.io": "~1.0.4",
     "angular": "~1.2.18",
     "angular-ui-router": "~0.2.10",
     "angular-cookies": "~1.2.18",
