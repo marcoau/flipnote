@@ -46,5 +46,5 @@ app.use(bodyParser());
 //load all routes
 require('./server/routes')(app, passport);
 
-app.listen(process.env.PORT || 3000);
-console.log('Flipnote server listening at 3000');
+app.listen(process.env.PORT || 4000);
+console.log('Flipnote server listening at 4000');

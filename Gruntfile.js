@@ -36,7 +36,7 @@ module.exports = function(grunt){
     },
     concat: {
       options: {
-        separator: ';'
+        separator: '\n'
       },
       dist: {}
     },
@@ -78,7 +78,7 @@ module.exports = function(grunt){
 
     //clean
     clean: {
-      src: ['../dist/**/*.*'],
+      src: ['../dist/**/*', '../dist/**/*.*', '!../dist/.git'],
       options: {
         force: true
       }
