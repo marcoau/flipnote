@@ -18,7 +18,9 @@ exports.passport = function(passport){
   //signing up
   passport.use('local-signup', new LocalStrategy(
     {
-      passReqToCallback : true // allows us to pass back the entire request to the callback
+      passReqToCallback : true, // allows us to pass back the entire request to the callback
+      usernameField : 'signup_username',
+      passwordField : 'signup_password'
     },
     function(req, username, password, done){
       // asynchronous - User.findOne wont fire unless data is sent back
