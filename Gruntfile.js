@@ -31,7 +31,7 @@ module.exports = function(grunt){
       html: ['client/**/*.html'],
       options: {
         root: 'client',
-        dest: '../dist/client',
+        dest: './dist/client',
       }
     },
     concat: {
@@ -51,7 +51,7 @@ module.exports = function(grunt){
         cwd: 'client/',
         //copying bower components to dist
         src: ['**/*.html', 'bower_components/**/*.*', 'favicon.ico'],
-        dest: '../dist/client'
+        dest: './dist/client'
       },
       options: {
         force: true,
@@ -64,21 +64,21 @@ module.exports = function(grunt){
           'package.json',
           'server/**/*.*'
         ],
-        dest: '../dist'
+        dest: './dist'
       }
     },
     usemin: {
-      html: ['../dist/client/**/*.html'],
+      html: ['./dist/client/**/*.html'],
       options: {
         assetsDirs: [
-          '../dist/client/',
+          './dist/client/',
         ]
       }
     },
 
     //clean
     clean: {
-      src: ['../dist/**/*', '../dist/**/*.*', '!../dist/.git'],
+      src: ['./dist/**/*', './dist/**/*.*'],
       options: {
         force: true
       }
