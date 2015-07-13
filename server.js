@@ -9,9 +9,6 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var app = express();
 
-//set default NODE_ENV to 'development'
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-
 //Passport Authentiation
 var passport = require('passport');
 //passport configuration
@@ -46,5 +43,5 @@ app.use(bodyParser());
 //load all routes
 require('./server/routes')(app, passport);
 
-app.listen(process.env.PORT || 4000);
-console.log('Flipnote server listening at 4000');
+app.listen(process.env.PORT || 8000);
+console.log('Flipnote server listening at 8000');
